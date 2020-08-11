@@ -58,7 +58,7 @@ class VideoUtil
             }
             $item->description = $playlist->getSnippet()->getDescription();
             $item->channel_id = $api->channel;
-            $item->date_added = $playlist->getSnippet()->getPublishedAt();
+            $item->date_added = date('Y-m-d H:i:s',strtotime($playlist->getSnippet()->getPublishedAt()));
 
             $item->save();
         }
