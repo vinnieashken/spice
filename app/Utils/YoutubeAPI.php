@@ -5,6 +5,7 @@ namespace App\Utils;
 
 
 use Google_Service_YouTube;
+use Google_Client;
 
 class YoutubeAPI
 {
