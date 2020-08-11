@@ -81,7 +81,7 @@ class VideoUtil
                 $video->id = $item->getContentDetails()->getVideoId();
                 $video->title = $item->getSnippet()->getTitle();
                 $video->url = ($item->getSnippet()->getThumbNails() != NULL ? $item->getSnippet()->getThumbNails()->getHigh()->getUrl() : NULL);
-                $video->date_added = $item->getContentDetails()->getVideoPublishedAt();
+                $video->date_added = date('Y-m-d H:i:s',strtotime($item->getContentDetails()->getVideoPublishedAt()));
 
                 $video->save();
             }
