@@ -63,7 +63,7 @@ class HomeController extends Controller
 
     public function updateDB(Request $request,$secret)
     {
-        if($secret == "sidika")
+        if($secret == "verasidika")
         {
             $util = new VideoUtil();
             $util->pullYoutubePlaylists();

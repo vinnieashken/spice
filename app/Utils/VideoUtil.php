@@ -39,6 +39,8 @@ class VideoUtil
 
     public function pullYoutubePlaylists()
     {
+        $order = ['The Situation Room' => 3,'Spice Drive'=> 2, 'Adults In The Room'=> 1];
+
         $api = new YoutubeAPI();
         foreach ($api->getChannelPlaylists($api->channel) as $playlist)
         {
@@ -50,6 +52,10 @@ class VideoUtil
 
             $item->id = $playlist->getId();
             $item->title = $playlist->getSnippet()->getTitle();
+            if(array_key_exists($item->title,$order))
+            {
+                $item->list_order = $order[$item->title];
+            }
             $item->description = $playlist->getSnippet()->getDescription();
             $item->channel_id = $api->channel;
             $item->date_added = $playlist->getSnippet()->getPublishedAt();
@@ -60,6 +66,7 @@ class VideoUtil
 
     public function pullYoutubePlaylistsVideos()
     {
+
         $api = new YoutubeAPI();
         foreach ($this->getLocalPlaylists($api->channel,100) as $playlist)
         {
